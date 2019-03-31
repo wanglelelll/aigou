@@ -9,7 +9,7 @@ spring:
   application:
     name: PRODUCT-SERVICE  #服务的名字
   datasource:
-      driver-class-name: come.mysal.jdbc.Drive
+      driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://localhost:3306/aigou
       uesrname: root
       password: 123456
@@ -28,7 +28,7 @@ spring:
   application:
     name: PRODUCT-SERVICE-TEST  #服务的名字
   datasource:
-      driver-class-name: come.mysal.jdbc.Drive
+      driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://localhost:3306/aigou_test
       uesrname: root
       password: 123456
