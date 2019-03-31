@@ -1,0 +1,49 @@
+spring:
+  profiles:
+    active: dev
+
+---
+server:
+  port: 9527
+spring:
+  application:
+    name: MICROSERVICE-ZUUL-GATEWAY
+  profiles: dev
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+  instance:
+    instance-id: gateway-9527 #显示的名字而已
+    prefer-ip-address: true  #注册中心左下角现实ip
+zuul:
+  prefix: "/aigou"  # 前缀
+  ignored-services: "*"
+  routes:
+  plat.serviceId: plat-service
+  plat.path: /plat/**
+  product.serviceId: product-service
+  product.path: /product/**
+
+  ---
+ server:
+   port: 9528
+ spring:
+   application:
+     name: MICROSERVICE-ZUUL-GATEWAY-TEST
+    profiles: test
+ eureka:
+   client:
+     service-url:
+       defaultZone: http://localhost:7001/eureka
+   instance:
+     instance-id: gateway-9528 #显示的名字而已
+     prefer-ip-address: true  #注册中心左下角现实ip
+ zuul:
+   prefix: "/aigou"  # 前缀
+   ignored-services: "*"
+   routes:
+   plat.serviceId: plat-service
+   plat.path: /plat/**
+   product.serviceId: product-service
+   product.path: /product/**
