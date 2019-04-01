@@ -17,7 +17,10 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:7001/eureka  #服务注册的注册中心的地址
+      defaultZone: http://localhost:7001/eureka  #服务注册的注册中心
+feign:
+  hystrix:
+    enabled: true
 mybatis-plus:
   mapper-locations: classpath:cn/itsource/aigou/mapper/*Mapper.xml
   type-aliases-package: cn.itsource.aigou.domain,cn.itsource.aigou.query
@@ -37,6 +40,9 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:7001/eureka  #服务注册的注册中心的地址
+feign:
+  hystrix:
+    enabled: true
 mybatis-plus:
   mapper-locations: classpath:cn/itsource/aigou/mapper/*Mapper.xml
   type-aliases-package: cn.itsource.aigou.domain,cn.itsource.aigou.query
