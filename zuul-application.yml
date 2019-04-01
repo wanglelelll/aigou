@@ -20,10 +20,10 @@ zuul:
   prefix: "/aigou"  # 前缀
   ignored-services: "*"
   routes:
-  plat.serviceId: plat-service
-  plat.path: /plat/**
-  product.serviceId: product-service
-  product.path: /product/**
+	  plat.serviceId: plat-service
+	  plat.path: /plat/**
+	  product.serviceId: product-service
+	  product.path: /product/**
 
   ---
  server:
