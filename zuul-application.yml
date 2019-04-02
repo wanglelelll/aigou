@@ -1,51 +1,52 @@
 spring:
   profiles:
-    active: dev
-
+    active:
+    - dev
 ---
 server:
   port: 9527
 spring:
   application:
     name: MICROSERVICE-ZUUL-GATEWAY
+  profiles: dev
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:7001/eureka
   instance:
-    instance-id: gateway-9527 #显示的名字而已
-    prefer-ip-address: true  #注册中心左下角现实ip
+    instance-id: gateway-9527 #显示的名字(可以不配)
+    prefer-ip-address: true #注册中心左下显示ip(可以不配)
 zuul:
-  prefix: "/aigou"  # 前缀
-  ignored-services: "*"
   routes:
     plat.serviceId: plat-service
-    plat.path: /plat/**
+    plat.path: /plat/**  #路由映射：/plat/**这个路径的访问，都路由到serverId服务
     product.serviceId: product-service
     product.path: /product/**
-    common.serviceId: common-privoder
+    common.serviceId: common-service
     common.path: /common/**
-  ---
- server:
-   port: 9528
- spring:
-   application:
-     name: MICROSERVICE-ZUUL-GATEWAY-TEST
-    profiles: test
- eureka:
-   client:
-     service-url:
-       defaultZone: http://localhost:7001/eureka
-   instance:
-     instance-id: gateway-9528 #显示的名字而已
-     prefer-ip-address: true  #注册中心左下角现实ip
- zuul:
-   prefix: "/aigou"  # 前缀
-   ignored-services: "*"
-   routes:
-   plat.serviceId: plat-service
-   plat.path: /plat/**
-   product.serviceId: product-service
-   product.path: /product/**
-   common.serviceId: common-privoder
-   common.path: /common/**
+  ignored-services: "*" #安全加固：忽略这个服务，忽略所有服务使用“*”
+  prefix: "/aigou"  #统一前缀：如果有多个服务可以给服务取一个前缀
+---
+server:
+  port: 9528
+spring:
+  application:
+    name: MICROSERVICE-ZUUL-GATEWAY-TEST
+  profiles: test
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+  instance:
+    instance-id: gateway-9528 #显示的名字(可以不配)
+    prefer-ip-address: true #注册中心左下显示ip(可以不配)
+zuul:
+  routes:
+    plat.serviceId: plat-service-test
+    plat.path: /plat/**  #路由映射：/plat/**这个路径的访问，都路由到serverId服务
+    product.serviceId: product-service-test
+    product.path: /product/**
+    common.serviceId: common-service-test
+    common.path: /common/**
+  ignored-services: "*" #安全加固：忽略这个服务，忽略所有服务使用“*”
+  prefix: "/aigou"  #统一前缀：如果有多个服务可以给服务取一个前缀
